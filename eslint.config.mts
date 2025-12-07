@@ -12,7 +12,10 @@ export default defineConfig([
     },
     extends: ['js/recommended'],
     languageOptions: { parser: tseslint.parser, globals: { ...globals.browser, ...globals.node } },
-    ignorePatterns: ['**/build/*', '**/node_modules/*', '**/public/*']
+    ignorePatterns: ['**/build/*', '**/node_modules/*', '**/public/*'],
+    rules: {
+      "@typescript-eslint/strict-boolean-expressions": "off"
+    }
   },
   tseslint.configs.recommended
 ])
