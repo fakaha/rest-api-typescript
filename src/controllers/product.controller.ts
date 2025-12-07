@@ -12,9 +12,6 @@ export const createProduct = async (req: Request, res: Response) => {
       logger.error(error?.details[0]?.message, 'ERR: product - create')
       return res.status(422).send({ status: false, statusCode: 422, message: error?.details[0]?.message, data: {} })
     }
-    // const product = await db.one(
-    //   `insert into products (name, price) values ('${value.name}', '${value.price}') returning *;`
-    // )
 
     const result = await ProductModel.create(value.name, value.price)
 
@@ -28,25 +25,7 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const getProduct = async (req: Request, res: Response) => {
   try {
-    //   const products = [
-    //     { name: 'Sepatu', price: 170000 },
-    //     { name: 'Kaos', price: 80000 }
-    //   ]
     const { name } = req.params
-
-    // const products = await db.any('select * from products')
-
-    // if (name) {
-    //   const filterProduct = products.filter((data: any) => {
-    //     return data.name.toLowerCase() == name.toLowerCase()
-    //   })
-    //   if (filterProduct.length === 0) {
-    //     logger.info('Data not found')
-    //     return res.status(404).send({ status: false, statusCode: 404, data: {} })
-    //   }
-    //   logger.info('Product Check Success')
-    //   return res.status(200).send({ status: true, statusCode: 200, data: filterProduct[0] })
-    // }
 
     const resultProduct = await ProductModel.get(name)
 
